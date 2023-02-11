@@ -1,0 +1,236 @@
+* Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [[https://keepachangelog.comfiri/en/1.0.0/][Keep a
+Changelog]], and this project adheres to
+[[https://semver.org/spec/v2.0.0.html][Semantic Versioning]].
+** 1.0 <2018-03-24 Sat>
+*** Added
+- Support for [[https://depp.brause.cc/nov.el/][nov.el]].
+- Starting a session from the document. If the note file is not found,
+  it will be created. The name of the new file is chose by the user
+  from ~org-noter-default-notes-file-names~.
+- ~org-noter-create-skeleton~ can generate annotations as well.
+- The option ~org-noter-separate-notes-from-heading~ to insert an empty line after creating a note.
+- ~org-noter--note-in-view~, ~org-noter--count-notes~ &
+  ~org-noter--get-notes-for-current-view~ as helper functions to show
+  note count in mode line.
+*** Changed
+- ~org-noter-kill-session~ will also remove hooks and advisors related
+  to org-noter.
+*** Renamed / Deprecated
+- ~org-noter--page-property~ -> ~org-noter--location-property~
+- ~org-noter--compare-page-cons~ -> ~org-noter--compare-location-cons~
+- ~org-noter-property-note-page~ -> ~org-noter-property-note-location~
+- ~org-noter--page-change-handler~ -> ~org-noter--doc-page-change-handler~
+- ~org-noter--ask-scroll-percentage~ -> ~org-noter--ask-precise-location~
+- ~org-noter-sync-prev-page~ -> ~org-noter-sync-prev-page-or-chapter~
+- ~org-noter-sync-current-page~ -> ~org-noter-sync-current-page-or-chapter~
+- ~org-noter-sync-next-page~ -> ~org-noter-sync-next-page-or-chapter~
+- ~org-noter--inhibit-page-handler~ -> ~org-noter--inhibit-location-change-handler~
+- ~org-noter--goto-page~ -> ~org-noter--doc-goto-location~
+- ~org-noter--doc-page-change-handler~ -> ~org-noter--doc-location-change-handler~
+- ~org-noter--doc-view-advice~ -> ~org-noter--location-change-advice~
+- ~org-noter--get-slice~ -> ~org-noter--doc-get-page-slice~
+- ~org-noter--modeline-text~ -> ~org-noter--mode-line-text~
+- ~org-noter--doc-current-page~ -> ~org-noter--doc-approx-location~
+** 0.12.0 <2018-02-06 Tue>
+*** Added
+- Support for grouping notes in the same headline.
+- Demonstration in [[./Demo/Demo.org][Demo.org]].
+- Resume session from a note.
+- ~org-noter-create-skeleton~ to generate the document outline with org
+  headline.
+- Caching the structure of the file in session for faster retrieval.
+- Customization for reusing existing frame with
+  ~org-noter-always-create-frame~.
+- Hiding unrelated note with ~org-noter-hide-other~, can be toggled with
+  ~org-noter-set-hide-other~, and overrode with
+  ~org-noter--property-hide-other~, =NOTER_HIDE_OTHER= .
+*** Changed
+- Reword many section of [[file:README.org][README]].
+- Refactor code in ~org-noter--selected-note-page~ to its own function,
+  ~org-noter--get-containing-heading~.
+- Refactor code in ~org-noter--setup-windows~ to
+  ~org-noter--get-notes-window~.
+- ~org-noter-set-notes-window-location~ deletes extra frame displaying
+  only note window.
+- Reuse windows if it's in the correct configuration.
+*** Fixed
+- Empty session name 
+- Error when creating session because ~current-page~ symbol is nil.
+- Inconsistency in ~org-noter-sync-prev-note~.
+- Infinite recursion in killing a session.
+** 0.11.0 <2018-01-29 Mon>
+*** Added
+- Note count to mode line.
+- Save progress with the variable ~org-noter-auto-save-last-page~. The
+  variable can be toggled with ~org-noter-set-auto-save-last-page~ or
+  override in a file with ~org-noter-property-auto-save-last-page~,
+  =NOTER_AUTO_SAVE_LAST_PAGE= property.
+- Store =::auto-save-last-page= property in session.
+*** Changed
+- ~org-noter-insert-note~ will select the document window when user quits
+  while inserting note.
+- ~org-noter-kill-session~ will kill the frame of the notes buffer.
+*** Renamed / Deprecated
+- ~org-noter-property-behavior~ -> ~org-noter--property-behavior~
+- ~org-noter-property-location~ -> ~org-noter--property-location~
+- ~org-noter-property-auto-save-last-page~ -> ~org-noter--property-auto-save-last-page~
+** 0.10.0 <2018-01-28 Sun>
+*** Added
+- Override global window settings with ~org-noter-property-behavior~ and
+  ~org-noter-property-location~, =NOTER_NOTES_BEHAVIOR= and
+  =NOTER_NOTES_LOCATION= respectively.
+- The macro ~org-noter--with-selected-notes-window~.
+- The function ~org-noter--notes-window-behavior-property~ and
+  ~org-noter--notes-window-location-property~ to get window setting
+  property.
+- The command ~org-noter-set-notes-window-behavior~ and
+  ~org-noter-set-notes-window-location~ to set window setting.
+- Store =:window-behavior= and =:window-location= property in session.
+- ~org-noter--compare-page-cons~ to do page comparison.
+- Sync page commands: ~org-noter-sync-prev-page~,
+  ~org-noter-sync-current-page~ & ~org-noter-sync-next-page~.
+  See [[file:README.org::#keys][README]] for their keybindings and explanation.
+*** Changed
+- Refactor most of the code in ~org-noter~ command to
+  ~org-noter--create-session~ function.
+- ~org-noter~ accepts relative file path.
+*** Renamed / Deprecated
+- ~org-noter--restore-windows~ -> ~org-noter--setup-windows~
+** 0.9.0 <2018-01-11 Thu>
+*** Added
+- More control over the setup of windows with
+  ~org-noter-notes-window-behavior~ and ~org-noter-notes-window-location~.
+- The function ~org-noter-other-window-config~ to start ~org-noter~ with
+  another window configuration.
+*** Changed
+- Change the package name from ~alt-interleave.el~ to ~org-noter.el~.
+*** Renamed / Deprecated
+- Every function is renamed with =org-noter= as its prefix.
+- Every occurrence of =pdf= is replaced with =doc=.
+*** Fixed
+- ~interleave--focus-notes-region~ recentering at the beginning of the
+  window.
+- Setting the beginning of the document to read-only.
+- Wrong ~cl-lib~ dependency declaration.
+** 0.8.0 <2017-12-18 Mon>
+*** Changed
+- ~interleave--selected-note-page~ uses all of the buffer to get root
+  property value.
+- ~interleave--focus-notes-region~ also recenters the screen.
+- ~interleave--restore-windows~ narrows to root after restoring windows.
+- ~interleave-kill-session~ no longer asks for confirmation when the
+  note buffer is modified.
+*** Fixed
+- Inserting headline at the end of the buffer without inserting newline.
+- Calling ~interleave~ with prefix argument still consider inherited tags.
+** 0.7.0 <2017-11-28 Tue>
+*** Added
+- ~interleave-set-start-page~ command sets the page for the start of a
+  session.
+- ~interleave-other-window-config~ command that use another split
+  direction to start.
+- ~interleave--selected-note-page~ to get the start page.
+- [[file:ideas.org][ideas.org]] to record some ideas.
+*** Changed
+- Use ~interleave--get-slice~ to get a more precise scroll percentage in
+  localized note.
+- Shorten display name of PDF buffer.
+- Users have to choose which notes ~interleave-insert-note~ can insert.
+- ~interleave--narrow-to-root~ go to the content of root instead of
+  restoring point.
+*** Fixed
+- ~interleave-kill-session~ killing modified notes buffer.
+- ~interleave--page-change-handler~ focusing on notes with no
+  =INTERLEAVE_NOTE_PAGE= property.
+** 0.6.0 <2017-11-25 Sat>
+*** Added
+- ~interleave-insert-localized-note~ that inserts a note that associate
+  with part of a page.
+- =INTERLEAVE_NOTE_PAGE= can be in the format of a cons cell;
+  =(PAGE_NUMBER . SCROLL_PERCENT)=.
+*** Changed
+- ~interleave--goto-page~ takes number instead of string.
+** 0.5.0 <2017-11-24 Fri>
+*** Added
+- Installation & Usage in README.
+- Users can change the default title of a note with the variable
+  ~interleave-default-heading-title~.
+- Opening only the directory of the PDF by passing prefix argument to
+  ~interleave~
+- Displaying name of documents when killing a session.
+- Storing the level of root heading in session.
+- Customized scroll for windows of interleave session with ~interleave--set-scroll~.
+*** Changed
+- The package is now named =alt-interleave=.
+- The property for the page of a note is changed back to
+  =INTERLEAVE_NOTE_PAGE=, for compatibility with Sebastian's Interleave,
+  users have to change this themselves as instructed in [[file:README.org::#diff][README]].
+- Define minor mode for PDF and notes: ~interleave-pdf-mode~,
+  ~interleave-notes-mode~. This is a cleaner way to handle local keybindings.
+- Use windows to set up the session instead of buffers.
+- Restore windows when a session is already opened with ~interleave--restore-windows~.
+*** Removed
+- The variable ~interleave--inhibit-next-page-change~ as no functions use it anymore.
+*** Fixed
+- Point not moving at the end of the buffer when syncing the pages.
+- Inserting new line in title when creating notes.
+** 0.4.0 <2017-11-11 Sat>
+*** Added
+- Support for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Document-View.html][DocView mode]].
+- Syncing the note file by going to the nearest note when the page
+  changes.
+- Commands for syncing notes: ~interleave-sync-previous-page-note~,
+  ~interleave-sync-next-page-note~.
+- Customization group called =interleave=
+- More details in [[file:README.org][README]] containing keybindings and features:
+  |-----+--------------------------------|
+  | =M-p= | ~interleave-sync-next-page-note~ |
+  | =M-.= | ~interleave-sync-page-note~      |
+  | =M-n= | ~interleave-sync-next-page-note~ |
+  |-----+--------------------------------|
+  | =i=   | ~interleave-insert-note~         |
+  | =q=   | ~interleave-kill-session~        |
+  |-----+--------------------------------|
+*** Renamed/Deprecated
+- ~interleave--property-pdf-file~ -> ~interleave-property-pdf-file~
+- ~interleave--property-note-page~ -> ~interleave-property-note-page~
+** 0.3.0 <2017-11-10 Fri>
+*** Added
+- The macro ~interleave--with-valid-session~ can be used for other
+  functions to access the information of a session.
+- Making root heading read-only when starting a session.
+*** Changed
+- The property for the page of a note is now =INTERLEAVE_PAGE_NOTE= for
+  compatibility.
+** 0.2.0 <2017-10-11 Wed>
+*** Added
+- [[file:LICENSE][LICENSE]] file for GNU GPL3 license.
+- [[file:README.org][README]] file explaining the reason for a rewrite.
+- ~interleave-kill-session~ command to manually kill a session.
+- Killing session automatically with ~interleave--handle-buffer-kill~
+  and ~interleave--handle-delete-frame~ used as hook for delete frame
+  functions.
+- The =INTERLEAVE_NOTE_PAGE= property to store page number of each note.
+- ~interleave-insert-note~ command that automatically make a new note
+  with respect to the order of the page number.
+*** Changed
+- Also consider the parent of a note as a "root" if it has the same
+  PDF as its property.
+- Ask user to kill the session instead of giving error when the PDF is
+  already interleaved with another note file.
+- The note window is no longer set as dedicated.
+** [[https://github.com/c1-g/org-noter-plus-djvu/releases/tag/0.1.0][0.1.0]] <2017-10-10 Tue>
+*** Added
+- =interleave.el= copied from [[https://github.com/rudolfochrist][Sebastian Christ]].
+- Checks for PDF file path e.g. non-existent file, invalid path in
+  ~interleave~ command.
+- The ability to use relative file name for PDF file.
+*** Changed
+- Storing information of a session in ~interleave--sessions~ instead of
+  relying on text only.
+- Narrowing to a heading when calling ~interleave~.
+- Setting windows for the PDF file and the note file to be dedicated.
+
