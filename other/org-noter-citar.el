@@ -58,30 +58,29 @@ When there is more than one note files associated with CITE-KEY, have
 user select one of them."
   (when (and (stringp cite-key) (string-match org-noter-citar-cite-key-re cite-key))
     (let* ((key (match-string 1 cite-key))
-           (entries (citar--ensure-entries (list key)))
-           (files (citar-file--files-for-multiple-entries
-                   entries
-                   (append citar-library-paths citar-notes-paths) nil))
-           (url (list (citar-get-link (car entries))))
-           (documents (flatten-list (append (seq-remove #'file-directory-p files) url))))
+           (files (hash-table-values (citar-get-files key)))
+           (url (hash-table-values (citar-get-links key)))
+           (documents (seq-remove #'file-directory-p (append (flatten-list files) (flatten-list url)))))
       (cond ((= (length documents) 1)
              (car documents))
             ((> (length documents) 1)
              (completing-read (format "Which document from %s?: " key) documents))))))
 
-(defun org-noter-citar-find-key-from-this-file (filename)
-  (let* ((entry-alist (mapcan (lambda (entry)
-                                (when-let ((file (citar-get-value citar-file-variable entry)))
-                                  (list (cons file (citar-get-value "=key=" entry)))))
-                              (citar--get-candidates)))
-         (key (alist-get filename entry-alist nil nil (lambda (s regexp)
-                                                        (string-match-p regexp s)))))
-    (when key
-      (file-name-with-extension key "org"))))
+(defun org-noter-citar-find-notes-from-this-file (filename)
+  (let* ((citekey)
+         (entry-alist (maphash (lambda (key val)
+                                 (when-let ((file (citar-get-value citar-file-variable val)))
+                                   (when (string-match-p filename file)
+                                     (push key citekey))))
+                               (citar-get-entries))))
+
+    (flatten-list (mapcan (lambda (node)
+                            (org-id-find-id-file (car (split-string node))))
+                          (gethash (car citekey) (citar-get-notes citekey))))))
 
 (add-to-list 'org-noter-parse-document-property-hook #'org-noter-citar-find-document-from-refs)
 
-(add-to-list 'org-noter-find-additional-notes-functions #'org-noter-citar-find-key-from-this-file)
+(add-to-list 'org-noter-find-additional-notes-functions #'org-noter-citar-find-notes-from-this-file)
 
 (provide 'org-noter-citar)
 ;;; org-noter-citar.el ends here
