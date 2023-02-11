@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [[https://keepachangelog.comfiri/en/1.0.0/][Keep a
 Changelog]], and this project adheres to
 [[https://semver.org/spec/v2.0.0.html][Semantic Versioning]].
+** Unreleased
+*** Added
+- ~org-noter-property-location-lock~ (=NOTER_PAGE_LOCK=) property that
+  inhibit ~org-noter-set-start-location~ from changing the location of a note.
+*** Fixed
+- Symbol definition is void error from [[file:other/org-noter-citar.el][org-noter-citar.el]] by removing ~citar--ensure-entries~.
 ** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.12.0...1.0][1.0]] <2018-03-24 Sat>
 *** Added
 - Support for [[https://depp.brause.cc/nov.el/][nov.el]].
