@@ -97,6 +97,13 @@ The default value is still NOTER_PAGE for backwards compatibility."
   :group 'org-noter
   :type 'string)
 
+(defcustom org-noter-property-location-lock "NOTER_PAGE_LOCK"
+  "Name of the property that specifies whether the location of the current note is locked.
+
+`org-noter-set-start-location' will not set start location if this property is non-nil."
+  :group 'org-noter
+  :type 'string)
+
 (defcustom org-noter-default-heading-title "Notes for page $p$"
   "The default title for headings created with `org-noter-insert-note'.
 $p$ is replaced with the number of the page or chapter you are in
@@ -1717,10 +1724,11 @@ With a prefix ARG, remove start location."
      (with-current-buffer (org-noter--session-notes-buffer session)
        (org-with-wide-buffer
         (goto-char (org-element-property :begin ast))
-        (if arg
-            (org-entry-delete nil org-noter-property-note-location)
-          (org-entry-put nil org-noter-property-note-location
-                         (org-noter--pretty-print-location location))))))))
+        (unless (org-entry-get nil org-noter-property-location-lock nil t)
+          (if arg
+              (org-entry-delete nil org-noter-property-note-location)
+            (org-entry-put nil org-noter-property-note-location
+                           (org-noter--pretty-print-location location)))))))))
 
 (defun org-noter-set-auto-save-last-location (arg)
   "This toggles saving the last visited location for this document.
