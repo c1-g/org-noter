@@ -13,7 +13,7 @@ Changelog]], and this project adheres to
 *** Removed
 - =org-noter-integration.el= that was copied from the Xi Fu's [[https://github.com/fuxialexander/org-pdftools][org-pdftools]] (see [[https://github.com/weirdNox/org-noter/pull/75][#75]]). If user wants the same functionality they can use [[https://github.com/fuxialexander/org-pdftools/blob/master/org-noter-pdftools.el][org-noter-pdftools.el]] (see [[https://github.com/fuxialexander/org-pdftools#installation][org-pdftools]] installation guide).
 
-** 1.15.0 <2022-05-31 Tue>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.14.0...1.15.0][1.15.0]] [2022-05-31 Tue]
 *** Added
 - Option ~org-noter-create-skeleton-functions~, list of function that
   inserts a tree of headlines according to the outline of the document.
@@ -30,7 +30,7 @@ Changelog]], and this project adheres to
 - org-noter--get-view-info don't work with drawer as root.
 - doc-mode and note-mode overlapping when using a single buffer.
 - Before first heading error in ~org-noter--focus-notes-region~.
-** 1.14.0 <2022-04-12 Tue>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.13.0...1.14.0][1.14.0]] [2022-04-12 Tue]
 *** Added
 - Allow links as document property.
 - Option ~org-noter-open-document-functions~, list of functions that
@@ -47,7 +47,7 @@ Changelog]], and this project adheres to
 - Fixes for org-pdftools location link in [[https://github.com/weirdNox/org-noter/pull/93][#93]].
 - Killing the base buffer of note file when
   ~org-noter-use-indirect-buffer~ is =nil=.
-** 1.13.0 <2022-03-11 Fri>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.12.0...1.13.0][1.13.0]] [2022-03-11 Fri]
 *** Added
 - Option ~org-noter-get-buffer-file-name-hook~, a list of functions that when passed a major mode, will return the current buffer file name.
 - Option ~org-noter-set-up-document-handler~
@@ -56,7 +56,7 @@ Changelog]], and this project adheres to
 - Option ~org-noter-get-selected-text-hook~
 *** Changed
 - Modularization of all document formats
-** 1.12.0 <2022-01-17 Mon>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.11.0...1.12.0][1.12.0]] [2022-01-17 Mon]
 *** Added
 - [[file:other/org-noter-dynamic-block.el][org-noter-dynamic-block.el]] allows using dynamic block as a note.
   The dynamic block have to be in the format of
@@ -77,7 +77,7 @@ NOTE
 *** Fixed
 - "Before first heading" error when starting a session in a file with
   no headings.
-** 1.11.0 <2022-01-14 Fri>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.10.0...1.11.0][1.11.0]] [2022-01-14 Fri]
 *** Added
 - Support an org file with no headings.
 - [[file:other/org-noter-citar.el][org-noter-citar.el]] a module that helps finding note files via [[https://github.com/emacs-citar/citar][citar]].
@@ -88,7 +88,7 @@ NOTE
 - Option ~org-noter-prefer-root-as-file-level~ (default =nil=) When
   non-nil, org-noter will always try to return the file-level property
   drawer even when there are headings.
-** 1.10.0 <2021-12-26 Sun>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.9.0...1.10.0][1.10.0]] [2021-12-26 Sun]
 *** Added
 - Option ~org-noter-swap-window~ (default =nil=)
 - Option ~org-noter-disable-narrowing~ (default =nil=)
@@ -102,7 +102,7 @@ NOTE
 *** Fixed
 - Setting property drawer to read-only when there is no drawer.
 - Emacs crashing when note buffer is not setup.
-** 1.9.0 <2021-11-21 Sun>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.8.0...1.9.0][1.9.0]] [2021-11-21 Sun]
 *** Added
 - ~org-noter-create-skeleton-epub~ for nov-mode from
   https://github.com/yuchen-lea/org-noter-plus.
@@ -111,7 +111,7 @@ NOTE
 *** Fixed
 - ~org-noter-nov-overlay.el~ only make overlays when the page matches.
 - ~org-noter-nov-overlay.el~ only make overlays when the location is precise.
-** 1.8.0 <2021-09-15 Wed>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.7.0...1.8.0][1.8.0]] [2021-09-15 Wed]
 *** Added
 - Allow keyword as a document property.
   #+begin_example
@@ -131,7 +131,7 @@ brah brah brah
 *** Renamed
 - ~get-location-top -> ~org-noter--get-location-top~
 - ~get-location-left~ -> ~org-noter--get-location-left~
-** 1.7.0 <2021-01-13 Wed>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.6.0...1.7.0][1.7.0]] [2021-01-13 Wed]
 *** Added
 - Modified version of ~pdf-util-tooltip-arrow~ called
   ~pdf-util-tooltip-arrow-with-image-left~ to handle x axis arrow.
@@ -139,7 +139,7 @@ brah brah brah
   getting the value of precise location.
 *** Changed
 - The format for precise location of a pdf becomes =(PAGE X . Y)=.
-** 1.6.0 <2021-09-13 Mon>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.5.0...1.6.0][1.6.0]] [2021-09-13 Mon]
 *** Added
 - ~org-noter-create-skeleton-djvu~ for creating skeleton for djvu files.
 *** Changed
@@ -147,16 +147,16 @@ brah brah brah
 - ~org-noter-insert-note~ additionally take =NOTE-TITLE= as an argument.
 - Refactor most code of ~org-noter-create-skeleton~ to
   ~org-noter-create-skeleton-pdf~.
-** 1.5.0 <2021-09-04 Sat>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.4.1...1.5.0][1.5.0]] [2021-09-04 Sat]
 *** Added
 - Support for [[https://en.wikipedia.org/wiki/DjVu][DjVu]] mode.
 - New [[file:README.org][README]] file.
 *** Changed
 - weirdNox's original README is in [[file:README-orig.org][README-orig.org]].
-** 1.4.1<2019-10-25 Fri>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.4.0...1.4.1][1.4.1]][2019-10-25 Fri]
 *** Fixed
 - Missing quote in ~org-noter--get-precise-info~.
-** 1.4.0 <2019-09-29 Sun>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.3.0...1.4.0][1.4.0]] [2019-09-29 Sun]
 *** Added
 - Option ~org-noter-insert-heading-hook~ for running functions after inserting notes.
 - Option ~org-noter-kill-frame-at-session-end~.
@@ -169,7 +169,7 @@ brah brah brah
 - Single frame deletion error.
 - Error about structs for Emacs < 26.
 - Narrowing heading with no children.
-** 1.3.0 <2018-10-26 Fri>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.2.0...1.3.0][1.3.0]] [2018-10-26 Fri]
 *** Added
 - Option ~org-noter-doc-property-in-notes~  that make org-noter put document property to every new note.
 - Record session id as text properties in the text  in note buffer.
@@ -184,7 +184,7 @@ brah brah brah
 - Unnecessary newlines with creating multiple notes.
 - Wrong root when creating a session in indirect buffer.
 - Let user insert space when creating note.
-** 1.2.0 <2018-08-16 Thu>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.1.0...1.2.0][1.2.0]] [2018-08-16 Thu]
 *** Added
 - Option ~org-noter-closest-tipping-point~ can be overrode with the
   property =NOTER_CLOSEST_TIPPING_POINT= per file or set the value with
@@ -203,13 +203,13 @@ brah brah brah
 *** Removed
 - ~org-noter--get-this-note-last-element~
 - ~org-noter--get-this-note-end~
-** 1.1.1<2018-06-26 Tue>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.1.0...1.1.1][1.1.1]][2018-06-26 Tue]
 *** Added
 - Option to choose ALL types of annotation in ~org-noter-create-skeleton~.
 - Option to choose both outline and annotation to generate skeleton.
 - Content and Comment of an annotation will be its children.
 - Subtree for URL in a page when creating a skeleton.
-** 1.1.0 <2018-06-18 Mon>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.0.2...1.1.0][1.1.0]] [2018-06-18 Mon]
 *** Added
 - Fallback to using ~buffer-file-truename~ when a mode kill ~buffer-file-name~.
 - Using region as precise location.
@@ -229,19 +229,19 @@ brah brah brah
 *** Fixed
 - Wrong order of outline ([[https://github.com/weirdNox/org-noter/issues/23][#23]]).
 - Unable to create a session from EPUB by using ~nov-file-name~.
-** 1.0.2 <2018-05-12 Sat>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.0.1...1.0.2][1.0.2]] [2018-05-12 Sat]
 *** Added
 - Using selection as the default title
 *** Changed
 - The outline created by ~org-noter-create-skeleton~ no longer separated with newline.
 *** Fixed
 - ~assert~ Symbol's function definition is void error.
-** 1.0.1 <2018-03-31 Sat>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/1.0...1.0.1][1.0.1]] [2018-03-31 Sat]
 *** Added
 - [[https://stable.melpa.org/][MELPA Stable]] badge in [[file:README.org]]
 *** Changed
 - Use if-elseif in ~org-noter~.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.12.0...1.0][1.0]] <2018-03-24 Sat>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.12.0...1.0][1.0]] [2018-03-24 Sat]
 *** Added
 - Support for [[https://depp.brause.cc/nov.el/][nov.el]].
 - Starting a session from the document. If the note file is not found,
@@ -271,7 +271,7 @@ brah brah brah
 - ~org-noter--get-slice~ -> ~org-noter--doc-get-page-slice~
 - ~org-noter--modeline-text~ -> ~org-noter--mode-line-text~
 - ~org-noter--doc-current-page~ -> ~org-noter--doc-approx-location~
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.11.0...0.12.0][0.12.0]] <2018-02-06 Tue>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.11.0...0.12.0][0.12.0]] [2018-02-06 Tue]
 *** Added
 - Support for grouping notes in the same headline.
 - Demonstration in [[./Demo/Demo.org][Demo.org]].
@@ -298,7 +298,7 @@ brah brah brah
 - Error when creating session because ~current-page~ symbol is nil.
 - Inconsistency in ~org-noter-sync-prev-note~.
 - Infinite recursion in killing a session.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.10.0...0.11.0][0.11.0]] <2018-01-29 Mon>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.10.0...0.11.0][0.11.0]] [2018-01-29 Mon]
 *** Added
 - Note count to mode line.
 - Save progress with the variable ~org-noter-auto-save-last-page~. The
@@ -314,7 +314,7 @@ brah brah brah
 - ~org-noter-property-behavior~ -> ~org-noter--property-behavior~
 - ~org-noter-property-location~ -> ~org-noter--property-location~
 - ~org-noter-property-auto-save-last-page~ -> ~org-noter--property-auto-save-last-page~
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.9.0...0.10.0][0.10.0]] <2018-01-28 Sun>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.9.0...0.10.0][0.10.0]] [2018-01-28 Sun]
 *** Added
 - Override global window settings with ~org-noter-property-behavior~ and
   ~org-noter-property-location~, =NOTER_NOTES_BEHAVIOR= and
@@ -336,7 +336,7 @@ brah brah brah
 - ~org-noter~ accepts relative file path.
 *** Renamed / Deprecated
 - ~org-noter--restore-windows~ -> ~org-noter--setup-windows~
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.8.0...0.9.0][0.9.0]] <2018-01-11 Thu>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.8.0...0.9.0][0.9.0]] [2018-01-11 Thu]
 *** Added
 - More control over the setup of windows with
   ~org-noter-notes-window-behavior~ and ~org-noter-notes-window-location~.
@@ -352,7 +352,7 @@ brah brah brah
   window.
 - Setting the beginning of the document to read-only.
 - Wrong ~cl-lib~ dependency declaration.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.7.0...0.8.0][0.8.0]] <2017-12-18 Mon>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.7.0...0.8.0][0.8.0]] [2017-12-18 Mon]
 *** Changed
 - ~interleave--selected-note-page~ uses all of the buffer to get root
   property value.
@@ -363,7 +363,7 @@ brah brah brah
 *** Fixed
 - Inserting headline at the end of the buffer without inserting newline.
 - Calling ~interleave~ with prefix argument still consider inherited tags.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.6.0...0.7.0][0.7.0]] <2017-11-28 Tue>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.6.0...0.7.0][0.7.0]] [2017-11-28 Tue]
 *** Added
 - ~interleave-set-start-page~ command sets the page for the start of a
   session.
@@ -382,7 +382,7 @@ brah brah brah
 - ~interleave-kill-session~ killing modified notes buffer.
 - ~interleave--page-change-handler~ focusing on notes with no
   =INTERLEAVE_NOTE_PAGE= property.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.5.0...0.6.0][0.6.0]] <2017-11-25 Sat>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.5.0...0.6.0][0.6.0]] [2017-11-25 Sat]
 *** Added
 - ~interleave-insert-localized-note~ that inserts a note that associate
   with part of a page.
@@ -390,7 +390,7 @@ brah brah brah
   =(PAGE_NUMBER . SCROLL_PERCENT)=.
 *** Changed
 - ~interleave--goto-page~ takes number instead of string.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.4.0...0.5.0][0.5.0]] <2017-11-24 Fri>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.4.0...0.5.0][0.5.0]] [2017-11-24 Fri]
 *** Added
 - Installation & Usage in README.
 - Users can change the default title of a note with the variable
@@ -414,7 +414,7 @@ brah brah brah
 *** Fixed
 - Point not moving at the end of the buffer when syncing the pages.
 - Inserting new line in title when creating notes.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.3.0...0.4.0][0.4.0]] <2017-11-11 Sat>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.3.0...0.4.0][0.4.0]] [2017-11-11 Sat]
 *** Added
 - Support for [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Document-View.html][DocView mode]].
 - Syncing the note file by going to the nearest note when the page
@@ -434,7 +434,7 @@ brah brah brah
 *** Renamed/Deprecated
 - ~interleave--property-pdf-file~ -> ~interleave-property-pdf-file~
 - ~interleave--property-note-page~ -> ~interleave-property-note-page~
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.2.0...0.3.0][0.3.0]] <2017-11-10 Fri>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.2.0...0.3.0][0.3.0]] [2017-11-10 Fri]
 *** Added
 - The macro ~interleave--with-valid-session~ can be used for other
   functions to access the information of a session.
@@ -442,7 +442,7 @@ brah brah brah
 *** Changed
 - The property for the page of a note is now =INTERLEAVE_PAGE_NOTE= for
   compatibility.
-** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.1.0...0.2.0][0.2.0]] <2017-10-11 Wed>
+** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.1.0...0.2.0][0.2.0]] [2017-10-11 Wed]
 *** Added
 - [[file:LICENSE][LICENSE]] file for GNU GPL3 license.
 - [[file:README.org][README]] file explaining the reason for a rewrite.
@@ -459,7 +459,7 @@ brah brah brah
 - Ask user to kill the session instead of giving error when the PDF is
   already interleaved with another note file.
 - The note window is no longer set as dedicated.
-** [[https://github.com/c1-g/org-noter-plus-djvu/releases/tag/0.1.0][0.1.0]] <2017-10-10 Tue>
+** [[https://github.com/c1-g/org-noter-plus-djvu/releases/tag/0.1.0][0.1.0]] [2017-10-10 Tue]
 *** Added
 - =interleave.el= copied from [[https://github.com/rudolfochrist][Sebastian Christ]].
 - Checks for PDF file path e.g. non-existent file, invalid path in
