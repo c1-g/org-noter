@@ -10,6 +10,97 @@ Changelog]], and this project adheres to
   inhibit ~org-noter-set-start-location~ from changing the location of a note.
 *** Fixed
 - Symbol definition is void error from [[file:other/org-noter-citar.el][org-noter-citar.el]] by removing ~citar--ensure-entries~.
+*** Removed
+- =org-noter-integration.el= that was copied from the Xi Fu's [[https://github.com/fuxialexander/org-pdftools][org-pdftools]] (see [[https://github.com/weirdNox/org-noter/pull/75][#75]]). If user wants the same functionality they can use [[https://github.com/fuxialexander/org-pdftools/blob/master/org-noter-pdftools.el][org-noter-pdftools.el]] (see [[https://github.com/fuxialexander/org-pdftools#installation][org-pdftools]] installation guide).
+
+** 1.4.1<2019-10-25 Fri>
+*** Fixed
+- Missing quote in ~org-noter--get-precise-info~.
+** 1.4.0 <2019-09-29 Sun>
+*** Added
+- Option ~org-noter-insert-heading-hook~ for running functions after inserting notes.
+- Option ~org-noter-kill-frame-at-session-end~.
+- Command ~org-noter-jump-to-note~ to jump from annotation to org heading.
+- Support annotating attached document.
+- Use org-id for [[https://github.com/fuxialexander/org-pdftools][org-pdftools]] locations.
+- Use [[https://github.com/fuxialexander/org-pdftools][org-pdftools]] links by ~org-noter-create-skeleton~.
+- Integration with [[https://github.com/fuxialexander/org-pdftools][org-pdftools]] in [[./other/org-noter-integration][org-noter-integration.el]].
+*** Fixed
+- Single frame deletion error.
+- Error about structs for Emacs < 26.
+- Narrowing heading with no children.
+** 1.3.0 <2018-10-26 Fri>
+*** Added
+- Option ~org-noter-doc-property-in-notes~  that make org-noter put document property to every new note.
+- Record session id as text properties in the text  in note buffer.
+- Inserting note without question with the option ~org-noter-insert-note-no-questions~, the command
+  ~org-noter-insert-note-toggle-no-questions~ can also be used with the keybinding =C-i=.
+*** Changed
+- ~org-noter-hide-other~ is set to true as a default.
+*** Fixed
+- Optimization of narrowing helper functions.
+- Killing buffer not from session.
+- Moving the point when focusing on notes
+- Unnecessary newlines with creating multiple notes.
+- Wrong root when creating a session in indirect buffer.
+- Let user insert space when creating note.
+** 1.2.0 <2018-08-16 Thu>
+*** Added
+- Option ~org-noter-closest-tipping-point~ can be overrode with the
+  property =NOTER_CLOSEST_TIPPING_POINT= per file or set the value with
+  ~org-noter-set-closest-tipping-point~.
+- Option ~org-noter-set-doc-split-fraction~ to control the size of the
+  split can be overrode with the property  =NOTER_DOCUMENT_SPLIT_FRACTION=
+   or by setting  ~org-noter-set-doc-split-fraction~.
+- ~org-noter--get-view-info~ to help with creating note.
+- ~only-prev~ behavior for ~org-noter-notes-window-behavior~.
+*** Changed
+- Refactor some code in ~org-noter--focus-notes-region~ to ~org-noter--show-note-entry~.
+- ~org-noter-insert-note~ no longer takes prefix argument.
+*** Renamed / Deprecated
+- ~org-noter--get-notes-for-current-view~ -> ~org-noter--get-current-view~
+- ~org-noter-doc-split-percentage~ -> ~org-noter-doc-split-fraction~
+*** Removed
+- ~org-noter--get-this-note-last-element~
+- ~org-noter--get-this-note-end~
+** 1.1.1<2018-06-26 Tue>
+*** Added
+- Option to choose ALL types of annotation in ~org-noter-create-skeleton~.
+- Option to choose both outline and annotation to generate skeleton.
+- Content and Comment of an annotation will be its children.
+- Subtree for URL in a page when creating a skeleton.
+** 1.1.0 <2018-06-18 Mon>
+*** Added
+- Fallback to using ~buffer-file-truename~ when a mode kill ~buffer-file-name~.
+- Using region as precise location.
+- Toggle ~org-noter-always-create-frame~ by calling ~org-noter~ with prefix argument 0.
+- Showing arrow when syncing notes with ~org-noter--arrow-location~ and
+  ~org-noter--show-arrow~.
+- Option ~org-noter-arrow-delay~ to set the delay for arrow.
+- Option ~org-noter-notes-search-path~ to search for an org mode when
+  start a session for a document.
+- Option ~org-noter-insert-selected-text-inside-note~ to make
+  ~org-noter-insert-note~ insert the selected text to the note heading
+  aswell.
+*** Changed
+- Convert edges of precise location of annotations in
+  ~org-noter-create-skeleton~ to region format with
+  ~org-noter--pdf-tools-edges-to-region~.
+*** Fixed
+- Wrong order of outline ([[https://github.com/weirdNox/org-noter/issues/23][#23]]).
+- Unable to create a session from EPUB by using ~nov-file-name~.
+** 1.0.2 <2018-05-12 Sat>
+*** Added
+- Using selection as the default title
+*** Changed
+- The outline created by ~org-noter-create-skeleton~ no longer separated with newline.
+*** Fixed
+- ~assert~ Symbol's function definition is void error.
+** 1.0.1 <2018-03-31 Sat>
+*** Added
+- [[https://stable.melpa.org/][MELPA Stable]] badge in [[file:README.org]]
+*** Changed
+- Use if-elseif in ~org-noter~.
 ** [[https://github.com/c1-g/org-noter-plus-djvu/compare/0.12.0...1.0][1.0]] <2018-03-24 Sat>
 *** Added
 - Support for [[https://depp.brause.cc/nov.el/][nov.el]].
