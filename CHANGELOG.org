@@ -13,6 +13,146 @@ Changelog]], and this project adheres to
 *** Removed
 - =org-noter-integration.el= that was copied from the Xi Fu's [[https://github.com/fuxialexander/org-pdftools][org-pdftools]] (see [[https://github.com/weirdNox/org-noter/pull/75][#75]]). If user wants the same functionality they can use [[https://github.com/fuxialexander/org-pdftools/blob/master/org-noter-pdftools.el][org-noter-pdftools.el]] (see [[https://github.com/fuxialexander/org-pdftools#installation][org-pdftools]] installation guide).
 
+** 1.15.0 <2022-05-31 Tue>
+*** Added
+- Option ~org-noter-create-skeleton-functions~, list of function that
+  inserts a tree of headlines according to the outline of the document.
+*** Changed
+- Move skeleton functions to their own files.
+*** Renamed / Deprecated
+- ~org-noter-set-up-document-handler~ -> ~org-noter-set-up-document-hook~.
+*** Removed
+- Revert using ~org-element-cache-map~.
+*** Fixed
+- Not recognizing location in file-level property.
+- Wrong number of arguments error in ~org-noter--doc-approx-location~.
+- Not parsing the document property before comparing to document path.
+- org-noter--get-view-info don't work with drawer as root.
+- doc-mode and note-mode overlapping when using a single buffer.
+- Before first heading error in ~org-noter--focus-notes-region~.
+** 1.14.0 <2022-04-12 Tue>
+*** Added
+- Allow links as document property.
+- Option ~org-noter-open-document-functions~, list of functions that
+  gives a buffer when passed with a document property.
+- [[file:other/org-noter-citar.el][org-noter-citar.el]] also give URL as document.
+- Handle single window layout when opening a URL.
+*** Changed
+- Use ~org-noter--get-or-read-document-property~ in
+  ~org-noter-sync-current-note~.
+- Remove org-roam-bibtex dependency in [[file:other/org-noter-citar.el][org-noter-citar.el]].
+*** Removed
+- ~org-noter--doc-approx-location-cons~
+*** Fixed
+- Fixes for org-pdftools location link in [[https://github.com/weirdNox/org-noter/pull/93][#93]].
+- Killing the base buffer of note file when
+  ~org-noter-use-indirect-buffer~ is =nil=.
+** 1.13.0 <2022-03-11 Fri>
+*** Added
+- Option ~org-noter-get-buffer-file-name-hook~, a list of functions that when passed a major mode, will return the current buffer file name.
+- Option ~org-noter-set-up-document-handler~
+- Option ~org-noter--doc-approx-location-hook~
+- Option ~org-noter--get-current-view-hook~
+- Option ~org-noter-get-selected-text-hook~
+*** Changed
+- Modularization of all document formats
+** 1.12.0 <2022-01-17 Mon>
+*** Added
+- [[file:other/org-noter-dynamic-block.el][org-noter-dynamic-block.el]] allows using dynamic block as a note.
+  The dynamic block have to be in the format of
+#+begin_example
+#+BEGIN: note PRECISE-LOCATION
+NOTE
+#+END:
+#+end_example
+- Option ~org-noter--get-containing-element-hook~, list of functions
+  that will be called by ~org-noter--get-containing-element~ to get the
+  org element of the note.
+- Option ~org-noter--get-location-property-hook~, a list of functions
+  that will return the note location of an org element.
+*** Changed
+- Delegates getting the org element of the note to
+  ~org-noter--get-containing-element~.
+- Using edges as precise location for pdf files.
+*** Fixed
+- "Before first heading" error when starting a session in a file with
+  no headings.
+** 1.11.0 <2022-01-14 Fri>
+*** Added
+- Support an org file with no headings.
+- [[file:other/org-noter-citar.el][org-noter-citar.el]] a module that helps finding note files via [[https://github.com/emacs-citar/citar][citar]].
+- Speed up page turning by using ~org-element-cache-map~. [YANKED]
+- Option ~org-noter-parse-document-property-hook~, a list of functions
+  that return a file name for the value of the property
+  ~org-noter-property-doc-file~.
+- Option ~org-noter-prefer-root-as-file-level~ (default =nil=) When
+  non-nil, org-noter will always try to return the file-level property
+  drawer even when there are headings.
+** 1.10.0 <2021-12-26 Sun>
+*** Added
+- Option ~org-noter-swap-window~ (default =nil=)
+- Option ~org-noter-disable-narrowing~ (default =nil=)
+- Option ~org-noter-use-indirect-buffer~ (default =t=)
+- Option ~org-noter-find-additional-notes-functions~, a list of
+  functions that when given a document file path as argument, give out
+  an org note file path.
+*** Changed
+- Org-noter can be called without headline.
+- Separate core functions to [[file:org-noter-core.el][org-noter-core.el]].
+*** Fixed
+- Setting property drawer to read-only when there is no drawer.
+- Emacs crashing when note buffer is not setup.
+** 1.9.0 <2021-11-21 Sun>
+*** Added
+- ~org-noter-create-skeleton-epub~ for nov-mode from
+  https://github.com/yuchen-lea/org-noter-plus.
+*** Renamed
+- ~get-location-page -> ~org-noter--get-location-page~
+*** Fixed
+- ~org-noter-nov-overlay.el~ only make overlays when the page matches.
+- ~org-noter-nov-overlay.el~ only make overlays when the location is precise.
+** 1.8.0 <2021-09-15 Wed>
+*** Added
+- Allow keyword as a document property.
+  #+begin_example
+#+NOTER_DOCUMENT: /path/to/doc.pdf
+#+end_example
+- Allow document property to be file-level
+#+begin_example
+:PROPERTIES:
+:NOTER_DOCUMENT: /path/to/doc.pdf
+:END:
+* First heading
+brah brah brah
+#+end_example
+- [[file:other/org-noter-nov-overlay.el][org-noter-nov-overlay.el]] highlight your notes with overlay in session for nov-mode.
+*** Changed
+- Use active region as precise info for djvu and epub files.
+*** Renamed
+- ~get-location-top -> ~org-noter--get-location-top~
+- ~get-location-left~ -> ~org-noter--get-location-left~
+** 1.7.0 <2021-01-13 Wed>
+*** Added
+- Modified version of ~pdf-util-tooltip-arrow~ called
+  ~pdf-util-tooltip-arrow-with-image-left~ to handle x axis arrow.
+- ~get-location-page~, ~get-location-top~ & ~get-location-left~ to help with
+  getting the value of precise location.
+*** Changed
+- The format for precise location of a pdf becomes =(PAGE X . Y)=.
+** 1.6.0 <2021-09-13 Mon>
+*** Added
+- ~org-noter-create-skeleton-djvu~ for creating skeleton for djvu files.
+*** Changed
+- ~org-noter--doc-goto-location~ also move point for djvu files.
+- ~org-noter-insert-note~ additionally take =NOTE-TITLE= as an argument.
+- Refactor most code of ~org-noter-create-skeleton~ to
+  ~org-noter-create-skeleton-pdf~.
+** 1.5.0 <2021-09-04 Sat>
+*** Added
+- Support for [[https://en.wikipedia.org/wiki/DjVu][DjVu]] mode.
+- New [[file:README.org][README]] file.
+*** Changed
+- weirdNox's original README is in [[file:README-orig.org][README-orig.org]].
 ** 1.4.1<2019-10-25 Fri>
 *** Fixed
 - Missing quote in ~org-noter--get-precise-info~.
